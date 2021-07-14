@@ -1,6 +1,6 @@
 <?php
 
-namespace Duke\Gem\Console;
+namespace Duke\Gem\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
