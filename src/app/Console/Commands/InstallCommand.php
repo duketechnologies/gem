@@ -1,6 +1,6 @@
 <?php
 
-namespace Duke\Gem\Console\Commands;
+namespace Duke\Gem\app\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -22,11 +22,11 @@ class InstallCommand extends Command
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Admin'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Controllers/Admin', app_path('Http/Controllers/Admin'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Controllers/Admin', app_path('Http/Controllers/Admin'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Admin'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Requests/Admin', app_path('Http/Requests/Admin'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Requests/Admin', app_path('Http/Requests/Admin'));
 //
 //        // Views...
 //        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
