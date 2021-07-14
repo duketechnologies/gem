@@ -40,7 +40,7 @@ class InstallCommand extends Command
 //        copy(__DIR__.'/../../stubs/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/routes/admin.php', base_path('routes/admin.php'));
+        copy(__DIR__.'/../../../stubs/routes/admin.php', base_path('routes/admin.php'));
 
 //        // "Dashboard" Route...
 
