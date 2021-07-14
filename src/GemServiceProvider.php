@@ -13,12 +13,12 @@ class GemServiceProvider extends ServiceProvider
         }
 
         $this->commands([
-            Console\InstallCommand::class,
+            app\Console\Commands\InstallCommand::class,
         ]);
     }
 
     public function provides()
     {
-        return [Console\InstallCommand::class];
+        return [app\Console\Commands\InstallCommand::class];
     }
 }
