@@ -1,0 +1,33 @@
+{
+    "name": "duke/gem",
+    "description": "Generate files for laravel projects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Duke Technologies"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^v5.19.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Duke\\Gem\\GemServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Duke\\Gem\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Duke\\Gem\\Tests\\": "tests/"
+        }
+    }
+}
