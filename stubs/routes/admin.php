@@ -8,7 +8,6 @@ Route::group([
     'middleware' => ['auth', RedirectIfNotAdmin::class],
     'prefix' => 'admin',
     'name' => 'admin.',
-    'namespace' => '\App\Http\Controllers\Admin',
 ], function () {
 
 });

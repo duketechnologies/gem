@@ -42,6 +42,9 @@ class InstallCommand extends Command
         // Routes...
         copy(__DIR__.'/../../../../stubs/routes/admin.php', base_path('routes/admin.php'));
 
+        // Sass
+        copy(__DIR__.'/../../../../stubs/resources/admin/sass/admin.scss', base_path('routes/admin/sass/admin.scss'));
+
 //        // "Dashboard" Route...
 
 

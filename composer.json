@@ -7,6 +7,10 @@
             "name": "Duke Technologies"
         }
     ],
+    "require": {
+        "intervention/image": "^2.5",
+        "maatwebsite/excel": "^3.1"
+    },
     "require-dev": {
         "orchestra/testbench": "^v5.19.0"
     },
