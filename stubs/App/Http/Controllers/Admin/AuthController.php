@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +11,7 @@ class AuthController extends Controller
 {
     public function create()
     {
-        return view('auth.login');
+        return view('admin.base.auth.login');
     }
 
     public function store(LoginRequest $request)
@@ -21,7 +20,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/');
     }
 
     public function destroy(Request $request)

@@ -3,7 +3,7 @@
 namespace Duke\Gem\app\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 
 class InstallCommand extends Command
 {
@@ -17,45 +17,32 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                     '@coreui/coreui' => '^4.0.1',
+                    "@fortawesome/fontawesome-free" => "^5.15.3",
                 ] + $packages;
         });
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Admin'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Controllers/Admin', app_path('Http/Controllers/Admin'));
+        File::copyDirectory(__DIR__.'/../../../../stubs/app/Http/Controllers/Admin', app_path('Http/Controllers/Admin'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Admin'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Requests/Admin', app_path('Http/Requests/Admin'));
-//
-//        // Views...
-//        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-//        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-//        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
-//
-//        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/auth', resource_path('views/auth'));
-//        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/layouts', resource_path('views/layouts'));
-//        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/components', resource_path('views/components'));
-//
-//        copy(__DIR__.'/../../stubs/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        File::copyDirectory(__DIR__.'/../../../../stubs/app/Http/Requests/Admin', app_path('Http/Requests/Admin'));
 
         // Routes...
-        copy(__DIR__.'/../../../../stubs/routes/admin.php', base_path('routes/admin.php'));
+        File::copy(__DIR__.'/../../../../stubs/routes/admin.php', base_path('routes/admin.php'));
+        file_put_contents(base_path('routes/web.php'),PHP_EOL.'include_once "admin.php";',FILE_APPEND);
 
-        // Sass
-        copy(__DIR__.'/../../../../stubs/resources/admin/sass/admin.scss', base_path('routes/admin/sass/admin.scss'));
+        // Config...
+        File::copy(__DIR__.'/../../../../stubs/config/admin.php', base_path('config/admin.php'));
 
-//        // "Dashboard" Route...
+        // Styles & Scripts
+        File::copyDirectory(__DIR__.'/../../../../stubs/resources/sass', base_path('resources/admin/sass'));
+        File::copyDirectory(__DIR__.'/../../../../stubs/resources/js', base_path('resources/admin/js'));
+        file_put_contents(base_path('webpack.mix.js'),PHP_EOL."mix.sass('resources/admin/sass/admin.scss', 'public/css').js('resources/admin/js/admin.js', 'public/js');",FILE_APPEND);
 
+        // Views...
+        File::copyDirectory(__DIR__.'/../../../../stubs/resources/views', base_path('resources/views/admin'));
 
-//        // Tailwind / Webpack...
-//        copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
-//        copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
-//        copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
-//        copy(__DIR__.'/../../stubs/resources/js/app.js', resource_path('js/app.js'));
-//
-//        $this->info('Breeze scaffolding installed successfully.');
-//        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     protected static function updateNodePackages(callable $callback, $dev = true)

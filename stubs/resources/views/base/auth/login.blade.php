@@ -1,0 +1,57 @@
+@extends('admin.base.layouts.main')
+
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h1 class="mb-5">{{ 'Вход' }}</h1>
+                        <form action="{{ route('admin.login.store') }}" method="POST">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-envelope"></i>
+                                </span>
+                                </div>
+                                <input class="form-control" type="text" placeholder="{{ 'Email' }}" required>
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-unlock"></i>
+                                </span>
+                                </div>
+                                <input class="form-control" type="password" placeholder="{{ 'Пароль' }}" required>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember"> {{ 'Запомнить меня' }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary px-4" type="submit">{{ 'Войти' }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
