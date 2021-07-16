@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'middleware' => ['auth', RedirectIfNotAdmin::class],
     'prefix' => 'admin',
-    'name' => 'admin.',
+    'as' => 'admin.',
 ], function () {
-    Route::get('dashboard', function () { return 'index'; })->name('dashboard');
+    Route::view('/', 'admin.base.dashboard')->name('index');
 });
 
 Route::get('/login', [AuthController::class, 'create'])

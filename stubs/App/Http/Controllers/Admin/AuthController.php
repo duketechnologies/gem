@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.index');
     }
 
     public function destroy(Request $request)
