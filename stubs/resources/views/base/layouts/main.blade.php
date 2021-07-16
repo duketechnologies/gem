@@ -3,21 +3,23 @@
 <head>
     @include('admin.base.partials.head')
 </head>
-<body class="c-app flex-row align-items-center">
+<body class="c-app">
+  @include('admin.base.partials.sidebar')
 
-  @yield('header')
+  <div class="c-wrapper c-fixed-components">
+    @include('admin.base.partials.header')
 
-  <div class="container">
-  @yield('content')
+    <div class="c-body">
+      <main class="c-main">
+        <div class="container-fluid">
+          <div class="fade-in">
+            @yield('content')
+          </div>
+        </div>
+      </main>
+    </div>
   </div>
 
-{{--  @yield('before_scripts')--}}
-{{--  @stack('before_scripts')--}}
-
   @include('admin.base.partials.scripts')
-
-{{--  @yield('after_scripts')--}}
-{{--  @stack('after_scripts')--}}
-
 </body>
 </html>
