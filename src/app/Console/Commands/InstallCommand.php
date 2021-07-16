@@ -16,7 +16,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    '@coreui/coreui' => '^4.0.1',
+                    '@coreui/coreui' => '^3.3.0',
                     "@fortawesome/fontawesome-free" => "^5.15.3",
                 ] + $packages;
         });
@@ -41,7 +41,7 @@ class InstallCommand extends Command
         // Styles & Scripts
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/sass', base_path('resources/admin/sass'));
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/js', base_path('resources/admin/js'));
-        file_put_contents(base_path('webpack.mix.js'),PHP_EOL."mix.sass('resources/admin/sass/admin.scss', 'public/css')".PHP_EOL.".js('resources/admin/js/admin.js', 'public/js');",FILE_APPEND);
+        file_put_contents(base_path('webpack.mix.js'),PHP_EOL."mix.sass('resources/admin/sass/admin.scss', 'public/css')".PHP_EOL."   .js('resources/admin/js/admin.js', 'public/js');",FILE_APPEND);
 
         // Views...
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/views', base_path('resources/views/admin'));
