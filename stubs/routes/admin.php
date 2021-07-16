@@ -9,7 +9,8 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
 ], function () {
-    Route::view('/', 'admin.base.dashboard')->name('index');
+    Route::redirect('/', 'admin/dashboard')->name('index');
+    Route::view('dashboard', 'admin.base.dashboard')->name('dashboard');
 });
 
 Route::get('/login', [AuthController::class, 'create'])
