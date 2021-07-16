@@ -1,2 +1,3 @@
-// require('@fortawesome/fontawesome-free')
-// //
+require('@popperjs/core')
+require('perfect-scrollbar')
+require('@coreui/coreui')

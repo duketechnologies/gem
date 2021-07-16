@@ -11,9 +11,9 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right py-0">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('admin.logout') }}">
                     <i class="fas fa-sign-out-alt mr-2"></i>
-                    Logout
+                    {{ 'Выход' }}
                 </a>
             </div>
         </li>

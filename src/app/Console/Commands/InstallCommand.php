@@ -17,6 +17,8 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                     '@coreui/coreui' => '^3.3.0',
+                    "@popperjs/core" => "^2.9.2",
+                    "perfect-scrollbar" => "^1.5.1",
                     "@fortawesome/fontawesome-free" => "^5.15.3",
                 ] + $packages;
         });
@@ -49,7 +51,7 @@ class InstallCommand extends Command
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
-    protected static function updateNodePackages(callable $callback, $dev = true)
+    protected static function updateNodePackages(callable $callback, $dev = false)
     {
         if (! file_exists(base_path('package.json'))) {
             return;

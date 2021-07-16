@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="jumbotron">
-        <h1 class="display-3">Hello, world!</h1>
+        <h4>{{ 'Добро пожаловать!' }}</h1>
     </div>
 @endsection

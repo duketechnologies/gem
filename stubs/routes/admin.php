@@ -19,6 +19,6 @@ Route::post('/login', [AuthController::class, 'store'])
     ->middleware('guest')
     ->name('admin.login.store');
 
-Route::post('/logout', [AuthController::class, 'destroy'])
+Route::get('/logout', [AuthController::class, 'destroy'])
     ->middleware('auth')
     ->name('admin.logout');
