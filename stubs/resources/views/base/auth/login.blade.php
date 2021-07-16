@@ -8,18 +8,23 @@
                     <div class="card-body">
                         <h1 class="mb-5">{{ 'Вход' }}</h1>
                         <form action="{{ route('admin.login.store') }}" method="POST">
+                            @csrf
+
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
+
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="far fa-envelope"></i>
                                 </span>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{ 'Email' }}" required>
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                <input class="form-control" type="email" name="email" placeholder="{{ 'Email' }}" required>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
@@ -27,12 +32,7 @@
                                     <i class="fas fa-unlock"></i>
                                 </span>
                                 </div>
-                                <input class="form-control" type="password" placeholder="{{ 'Пароль' }}" required>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                <input class="form-control" type="password" name="password" placeholder="{{ 'Пароль' }}" required>
                             </div>
                             <div class="form-group">
                                 <div>

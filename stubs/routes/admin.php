@@ -9,7 +9,7 @@ Route::group([
     'prefix' => 'admin',
     'name' => 'admin.',
 ], function () {
-
+    Route::get('/', function () { return 'index'; })->name('index');
 });
 
 Route::get('/login', [AuthController::class, 'create'])
