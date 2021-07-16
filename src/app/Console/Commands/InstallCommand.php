@@ -27,6 +27,10 @@ class InstallCommand extends Command
         // Requests...
         File::copyDirectory(__DIR__.'/../../../../stubs/app/Http/Requests/Admin', app_path('Http/Requests/Admin'));
 
+        //Middleware
+        File::copy(__DIR__.'/../../../../stubs/app/Http/Middleware/RedirectIfNotAdmin.php', app_path('Http/Middleware/RedirectIfNotAdmin.php'));
+
+
         // Routes...
         File::copy(__DIR__.'/../../../../stubs/routes/admin.php', base_path('routes/admin.php'));
         file_put_contents(base_path('routes/web.php'),PHP_EOL.'include_once "admin.php";',FILE_APPEND);
@@ -37,7 +41,7 @@ class InstallCommand extends Command
         // Styles & Scripts
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/sass', base_path('resources/admin/sass'));
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/js', base_path('resources/admin/js'));
-        file_put_contents(base_path('webpack.mix.js'),PHP_EOL."mix.sass('resources/admin/sass/admin.scss', 'public/css').js('resources/admin/js/admin.js', 'public/js');",FILE_APPEND);
+        file_put_contents(base_path('webpack.mix.js'),PHP_EOL."mix.sass('resources/admin/sass/admin.scss', 'public/css')".PHP_EOL.".js('resources/admin/js/admin.js', 'public/js');",FILE_APPEND);
 
         // Views...
         File::copyDirectory(__DIR__.'/../../../../stubs/resources/views', base_path('resources/views/admin'));
